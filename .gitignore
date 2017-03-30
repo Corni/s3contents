@@ -62,5 +62,7 @@ target/
 
 # Others
 .ipynb_checkpoints
-
 s3-data
+
+# PyCharm
+.idea/
