@@ -36,8 +36,6 @@ class S3ContentsManager(ContentsManager, HasTraits):
     signature_version = Unicode(help="").tag(config=True)
     delimiter = Unicode("/", help="Path delimiter").tag(config=True)
 
-    root_dir = Unicode("./", config=True)
-
     def __init__(self, *args, **kwargs):
         super(S3ContentsManager, self).__init__(*args, **kwargs)
 
