@@ -7,6 +7,7 @@ from tornado.web import HTTPError
 
 from s3contents.s3fs import S3FS
 from s3contents.basefs import NoSuchFileException
+from s3contents.simplekvfs import SimpleKVFS
 from s3contents.ipycompat import ContentsManager
 from s3contents.ipycompat import HasTraits, Unicode
 from s3contents.ipycompat import reads, from_dict, GenericFileCheckpoints
@@ -52,6 +53,8 @@ class S3ContentsManager(ContentsManager, HasTraits):
             prefix=self.prefix,
             signature_version=self.signature_version,
             delimiter=self.delimiter)
+
+        self.s3fs = SimpleKVFS(log=self.log)
 
     def _checkpoints_class_default(self):
         return GenericFileCheckpoints
