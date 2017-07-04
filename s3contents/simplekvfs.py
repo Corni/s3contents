@@ -43,7 +43,7 @@ class SimpleKVFS(BaseFS, HasTraits):
         if self.isdir(old_path):
             old_dir_path, new_dir_path = old_path, new_path
             old_dir_key = self.as_key(old_dir_path)
-            for key in self.store.iter_keys(prefix=old_dir_key):
+            for key in self.store.keys(prefix=old_dir_key):
                 old_item_path = self.as_path(key)
                 new_item_path = old_item_path.replace(old_dir_path, new_dir_path, 1)
                 self.cp(old_item_path, new_item_path)
