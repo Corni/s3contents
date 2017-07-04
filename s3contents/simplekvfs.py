@@ -30,16 +30,16 @@ class SimpleKVFS(BaseFS, HasTraits):
         return self.store.keys(prefix=prefix)
 
     def isfile(self, path):
-        self.log.debug("S3contents[S3FS] Checking if `%s` is a file", path)
+        self.log.debug("S3contents[SimpleKVFS] Checking if `%s` is a file", path)
         key = self.as_key(path)
         if key != "" and key in self.store:
-            self.log.debug("S3contents[S3FS] `%s` is a file: %s", path, True)
+            self.log.debug("S3contents[SimpleKVFS] `%s` is a file: %s", path, True)
             return True
-        self.log.debug("S3contents[S3FS] `%s` is a file: %s", path, False)
+        self.log.debug("S3contents[SimpleKVFS] `%s` is a file: %s", path, False)
         return False
 
     def cp(self, old_path, new_path):
-        self.log.debug("S3contents[S3FS] Copy `%s` to `%s`", old_path, new_path)
+        self.log.debug("S3contents[SimpleKVFS] Copy `%s` to `%s`", old_path, new_path)
         if self.isdir(old_path):
             old_dir_path, new_dir_path = old_path, new_path
             old_dir_key = self.as_key(old_dir_path)
@@ -57,7 +57,7 @@ class SimpleKVFS(BaseFS, HasTraits):
                 self.store.put(new_key, self.store.get(old_key))
 
     def rm(self, path):
-        self.log.debug("S3contents[S3FS] Deleting: `%s`", path)
+        self.log.debug("S3contents[SimpleKVFS] Deleting: `%s`", path)
         if self.isfile(path):
             key = self.as_key(path)
             self.store.delete(key)
