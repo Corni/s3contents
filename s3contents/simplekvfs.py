@@ -1,7 +1,6 @@
 """
 Utilities to make SimpleKVFS look like a regular file system
 """
-import six
 import storefact
 
 from s3contents.ipycompat import HasTraits, Unicode
