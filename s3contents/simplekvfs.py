@@ -17,7 +17,7 @@ class SimpleKVFS(BaseFS, HasTraits):
     dir_keep_file = Unicode(".s3keep", help="Empty file to create when creating directories").tag(config=True)
 
     def __init__(self, log, **kwargs):
-        super(SimpleKVFS, self).__init__(**kwargs)
+        super(SimpleKVFS, self).__init__(log, **kwargs)
         self.log = log
         self.delimiter = "/"
         if self.prefix:
@@ -32,7 +32,6 @@ class SimpleKVFS(BaseFS, HasTraits):
     def isfile(self, path):
         self.log.debug("S3contents[S3FS] Checking if `%s` is a file", path)
         key = self.as_key(path)
-        # TODO trigger this bug with set prefix
         if key != "" and key in self.store:
             self.log.debug("S3contents[S3FS] `%s` is a file: %s", path, True)
             return True
