@@ -20,6 +20,7 @@ class S3ContentsManagerTestCase(TestContentsManager):
             signature_version="s3v4")
 
     def tearDown(self):
+        return
         bucket = self.contents_manager.s3fs.bucket
 
         objects_to_delete = []
